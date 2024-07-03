@@ -10,8 +10,8 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: postgresql  
-      POSTGRES_PASSWORD: He32206672+ 
-      POSTGRES_DB: bd-curso
+      POSTGRES_USER: postgresql
+      POSTGRES_PASSWORD: He32206672+
+      POSTGRES_DB: bd-instadev
     volumes:
       - ./data:/var/lib/postgresql
