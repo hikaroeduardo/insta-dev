@@ -1,0 +1,17 @@
+# versão do docker
+version: '3.9'
+
+# servicos
+services:
+  # nome do serviço
+  instadev:
+    image: 'postgres:latest'
+    restart: 'always'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgresql  
+      POSTGRES_PASSWORD: He32206672+ 
+      POSTGRES_DB: bd-curso
+    volumes:
+      - ./data:/var/lib/postgresql
