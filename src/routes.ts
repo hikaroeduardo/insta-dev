@@ -2,6 +2,6 @@ import { Router } from "express";
 
 export const routes = Router();
 
-routes.get("/health", (req, res) => {
-    return res.json({ message: "first route" });
-});
+import { UserController } from "./controllers/UserController";
+
+routes.post("/user", new UserController().create);
