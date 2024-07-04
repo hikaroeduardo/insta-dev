@@ -24,4 +24,6 @@ model Users {
   password_hash String
   created_at    DateTime @default(now())
   updated_at    DateTime @default(now())
+
+  @@map("users")
 }
