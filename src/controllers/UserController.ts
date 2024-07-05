@@ -1,37 +1,33 @@
 import { Request, Response } from "express";
-import { prisma } from "../utils/prisma-client";
+
+import { UserServices } from "../services/UserServices";
+
+import { UserAlreadyExistsError } from "../utils/errors/user-already-exists";
+import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-errors";
 
 export class UserController {
     async create(req: Request, res: Response) {
         const { name, email, userName, password } = req.body;
 
-        if (!name || !email || !userName || !password) {
-            return res
-                .status(400)
-                .json({ messageError: "Todos os dados são obrigatórios." });
-        }
+        try {
+            const userService = new UserServices();
 
-        const user = await prisma.users.findUnique({
-            where: {
-                email,
-            },
-        });
-
-        if (user) {
-            return res.status(422).json({
-                message: "Este e-mail ja está cadastrado em nosso sistema.",
-            });
-        }
-
-        const createdNewUser = await prisma.users.create({
-            data: {
+            const newUser = await userService.createNewUser({
                 name,
-                user_name: userName,
                 email,
-                password_hash: password,
-            },
-        });
+                userName,
+                password,
+            });
 
-        res.status(201).json(createdNewUser);
+            return res.status(201).json(newUser);
+        } catch (error: any) {
+            if (error instanceof UserAlreadyExistsError) {
+                return res.status(422).json({ message: error.message });
+            }
+
+            if (error instanceof DataIsMandatoryError) {
+                return res.status(400).json({ message: error.message });
+            }
+        }
     }
 }
