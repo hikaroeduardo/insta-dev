@@ -19,7 +19,7 @@ export class CreateNewUserController {
                 password,
             });
 
-            return res.status(201).json(newUser);
+            return res.status(201).send();
         } catch (error: any) {
             if (error instanceof UserAlreadyExistsError) {
                 return res.status(422).json({ message: error.message });

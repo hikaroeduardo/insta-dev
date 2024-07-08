@@ -4,7 +4,7 @@ interface createUserProps {
     name: string;
     userName: string;
     email: string;
-    password: string;
+    password_hash: string;
 }
 
 export class UserMoldel {
@@ -18,13 +18,13 @@ export class UserMoldel {
         return user;
     }
 
-    async createUser({ name, userName, email, password }: createUserProps) {
+    async createUser({ name, userName, email, password_hash }: createUserProps) {
         const createdNewUser = await prisma.users.create({
             data: {
                 name,
                 user_name: userName,
                 email,
-                password_hash: password,
+                password_hash,
             },
         });
 

@@ -1,3 +1,5 @@
+import { hash } from "bcrypt";
+
 import { UserMoldel } from "../models/UserModels";
 
 import { UserAlreadyExistsError } from "../utils/errors/user-already-exists";
@@ -31,11 +33,13 @@ export class CreateNewUserService {
             );
         }
 
+        const password_hash = await hash(password, 6);
+
         const newUser = await userMoldel.createUser({
             name,
             email,
             userName,
-            password,
+            password_hash,
         });
 
         return newUser;
