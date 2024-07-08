@@ -10,7 +10,7 @@ interface CreateNewUserProps {
     password: string;
 }
 
-export class UserServices {
+export class CreateNewUserService {
     async createNewUser({
         name,
         email,
