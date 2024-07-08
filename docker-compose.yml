@@ -1,9 +1,7 @@
-# versão do docker
 version: '3.9'
 
 # servicos
 services:
-  # nome do serviço
   instadev:
     image: 'postgres:latest'
     restart: 'always'
