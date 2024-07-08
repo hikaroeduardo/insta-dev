@@ -2,8 +2,8 @@ import { hash } from "bcrypt";
 
 import { UserMoldel } from "../models/UserModels";
 
-import { UserAlreadyExistsError } from "../utils/errors/user-already-exists";
-import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-errors";
+import { UserAlreadyExistsError } from "../utils/errors/user-already-exists-error";
+import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
 
 interface CreateNewUserProps {
     name: string;

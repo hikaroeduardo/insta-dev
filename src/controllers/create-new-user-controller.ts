@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 
 import { CreateNewUserService } from "../services/create-new-user-service";
 
-import { UserAlreadyExistsError } from "../utils/errors/user-already-exists";
-import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-errors";
+import { UserAlreadyExistsError } from "../utils/errors/user-already-exists-error";
+import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
 
 export class CreateNewUserController {
     async create(req: Request, res: Response) {
@@ -12,7 +12,7 @@ export class CreateNewUserController {
         try {
             const userService = new CreateNewUserService();
 
-            const newUser = await userService.createNewUser({
+            await userService.createNewUser({
                 name,
                 email,
                 userName,

@@ -18,7 +18,22 @@ export class UserMoldel {
         return user;
     }
 
-    async createUser({ name, userName, email, password_hash }: createUserProps) {
+    async findByUserName(userName: string) {
+        const user = await prisma.users.findUnique({
+            where: {
+                user_name: userName,
+            },
+        });
+
+        return user;
+    }
+
+    async createUser({
+        name,
+        userName,
+        email,
+        password_hash,
+    }: createUserProps) {
         const createdNewUser = await prisma.users.create({
             data: {
                 name,
