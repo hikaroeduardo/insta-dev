@@ -7,7 +7,7 @@ interface createUserProps {
     password_hash: string;
 }
 
-export class UserMoldel {
+class UserModel {
     async findByEmail(email: string) {
         const user = await prisma.users.findUnique({
             where: {
@@ -46,3 +46,5 @@ export class UserMoldel {
         return createdNewUser;
     }
 }
+
+export const userModel = new UserModel()

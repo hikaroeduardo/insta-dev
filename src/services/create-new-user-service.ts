@@ -1,6 +1,6 @@
 import { hash } from "bcrypt";
 
-import { UserMoldel } from "../models/UserModels";
+import { userModel } from "../models/UserModels";
 
 import { UserAlreadyExistsError } from "../utils/errors/user-already-exists-error";
 import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
@@ -23,9 +23,7 @@ export class CreateNewUserService {
             throw new DataIsMandatoryError("Todos os dados são obrigatórios.");
         }
 
-        const userMoldel = new UserMoldel();
-
-        const userAlreadyExists = await userMoldel.findByEmail(email);
+        const userAlreadyExists = await userModel.findByEmail(email);
 
         if (userAlreadyExists) {
             throw new UserAlreadyExistsError(
@@ -35,7 +33,7 @@ export class CreateNewUserService {
 
         const password_hash = await hash(password, 6);
 
-        const newUser = await userMoldel.createUser({
+        const newUser = await userModel.createUser({
             name,
             email,
             userName,

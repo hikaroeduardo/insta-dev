@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 const { sign } = jwt;
 
-import { UserMoldel } from "../models/UserModels";
+import { userModel } from "../models/UserModels";
 
 import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
 import { InvalidCredencials } from "../utils/errors/user-not-exists-error";
@@ -19,9 +19,8 @@ export class AuthenticateService {
             throw new DataIsMandatoryError("Todos os dados são obrigatórios.");
         }
 
-        const userMoldel = new UserMoldel();
 
-        const user = await userMoldel.findByUserName(userName);
+        const user = await userModel.findByUserName(userName);
 
         if (!user) {
             throw new InvalidCredencials("Credenciais incorretas.");
