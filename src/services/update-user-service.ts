@@ -6,6 +6,7 @@ interface UpdateUserProps {
     name: string;
     gender: string;
     avatar: string;
+    bio: string;
     userId: string;
 }
 
@@ -24,7 +25,7 @@ interface UpdateUserProps {
 */
 
 export class UpdateUserService {
-    async updateUser({ name, gender, avatar, userId }: UpdateUserProps) {
+    async updateUser({ name, gender, avatar, bio, userId }: UpdateUserProps) {
         const user = await userModel.findByUserId(Number(userId));
 
         if (!user) {
@@ -32,14 +33,13 @@ export class UpdateUserService {
         }
 
         try {
-            const userUpdated = userModel.UpdateUser({
+            await userModel.UpdateUser({
                 name: name ?? user.name,
                 gender: gender ?? user.gender,
                 avatar: avatar ?? user.avatar,
+                bio: bio ?? user.bio,
                 userId,
             });
-
-            return userUpdated;
         } catch (error) {
             throw new Error("Error updating data.");
         }

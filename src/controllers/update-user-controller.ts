@@ -6,7 +6,7 @@ import { UserNotFoundError } from "../utils/errors/user-not-found-error";
 export class UpdateUserController {
     async update(req: Request, res: Response) {
         const { userId } = req;
-        const { name, gender, avatar } = req.body;
+        const { name, gender, avatar, bio } = req.body;
 
         if (!userId) {
             return res.status(400).json({ message: "User not found!" });
@@ -19,6 +19,7 @@ export class UpdateUserController {
                 name,
                 gender,
                 avatar,
+                bio,
                 userId,
             });
 

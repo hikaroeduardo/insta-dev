@@ -11,6 +11,7 @@ interface UpdateUserProps {
     name: string;
     gender: string;
     avatar: string;
+    bio: string;
     userId: string;
 }
 
@@ -63,7 +64,7 @@ class UserModel {
         return createdNewUser;
     }
 
-    async UpdateUser({ name, gender, avatar, userId }: UpdateUserProps) {
+    async UpdateUser({ name, gender, avatar, bio, userId }: UpdateUserProps) {
         await prisma.users.update({
             where: {
                 id: Number(userId),
@@ -72,6 +73,7 @@ class UserModel {
                 name,
                 gender,
                 avatar,
+                bio,
             },
         });
     }
