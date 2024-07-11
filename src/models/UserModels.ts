@@ -7,6 +7,13 @@ interface createUserProps {
     password_hash: string;
 }
 
+interface UpdateUserProps {
+    name: string;
+    gender: string;
+    avatar: string;
+    userId: string;
+}
+
 class UserModel {
     async findByEmail(email: string) {
         const user = await prisma.users.findUnique({
@@ -22,6 +29,16 @@ class UserModel {
         const user = await prisma.users.findUnique({
             where: {
                 user_name: userName,
+            },
+        });
+
+        return user;
+    }
+
+    async findByUserId(userId: number) {
+        const user = await prisma.users.findUnique({
+            where: {
+                id: userId,
             },
         });
 
@@ -45,6 +62,19 @@ class UserModel {
 
         return createdNewUser;
     }
+
+    async UpdateUser({ name, gender, avatar, userId }: UpdateUserProps) {
+        await prisma.users.update({
+            where: {
+                id: Number(userId),
+            },
+            data: {
+                name,
+                gender,
+                avatar,
+            },
+        });
+    }
 }
 
-export const userModel = new UserModel()
+export const userModel = new UserModel();
