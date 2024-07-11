@@ -39,7 +39,7 @@ export class AuthenticateService {
         const token = sign(
             { userName: user.user_name, email: user.email },
             process.env.SECRET_KEY as string,
-            { subject: user.id.toString() }
+            { expiresIn: '1d', subject: user.id.toString() }
         );
 
         return token;
