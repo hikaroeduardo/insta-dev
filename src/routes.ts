@@ -5,15 +5,15 @@ export const routes = Router();
 import { upload } from "./utils/multer/multer-config";
 
 import { isAuthenticate } from "./middlewares/isAuthenticate";
-import { CreateNewUserController } from "./controllers/create-new-user-controller";
-import { AuthenticateUser } from "./controllers/authenticate-controller";
-import { UpdateUserController } from "./controllers/update-user-controller";
-import { GetProfileController } from "./controllers/get-profile-controller";
 
-import { UploadFileController } from "./controllers/upload-file-controller";
+import { CreateNewUserController } from "./controllers/users/create-new-user-controller";
+import { AuthenticateUser } from "./controllers/users/authenticate-controller";
+import { UpdateUserController } from "./controllers/users/update-user-controller";
+import { GetProfileController } from "./controllers/users/get-profile-controller";
+import { UploadFileController } from "./controllers/users/upload-file-controller";
 
-import { CreateNewPostController } from "./controllers/create-new-post-controller";
-import { DeletePostController } from "./controllers/delete-post-controller";
+import { CreateNewPostController } from "./controllers/posts/create-new-post-controller";
+import { DeletePostController } from "./controllers/posts/delete-post-controller";
 
 routes.post("/user", new CreateNewUserController().create);
 routes.post("/login", new AuthenticateUser().authenticate);

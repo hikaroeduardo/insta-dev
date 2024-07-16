@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
-import { UpdateUserService } from "../services/update-user-service";
-import { UserNotFoundError } from "../utils/errors/user-not-found-error";
+import { UpdateUserService } from "../../services/users/update-user-service";
+import { UserNotFoundError } from "../../utils/errors/user-not-found-error";
 
 export class UpdateUserController {
     async update(req: Request, res: Response) {

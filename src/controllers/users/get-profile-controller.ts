@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
-import { GetProfileService } from "../services/get-profile-service";
-import { UserNotFoundError } from "../utils/errors/user-not-found-error";
+
+import { GetProfileService } from "../../services/users/get-profile-service";
+
+import { UserNotFoundError } from "../../utils/errors/user-not-found-error";
 
 export class GetProfileController {
     async getProfile(req: Request, res: Response) {

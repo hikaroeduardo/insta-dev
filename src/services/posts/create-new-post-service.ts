@@ -1,6 +1,6 @@
-import { postModel } from "../models/PostModels";
+import { postModel } from "../../models/PostModels";
 
-import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
+import { DataIsMandatoryError } from "../../utils/errors/data-is-mandatory-error";
 
 interface CreateNewPostProps {
     userId: string;

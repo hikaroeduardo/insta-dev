@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
-import { DeletePostService } from "../services/delete-post-service";
-import { PostNotFoundError } from "../utils/errors/post-not-exists-error";
-import { Unauthorized } from "../utils/errors/unauthorized-error";
+
+import { DeletePostService } from "../../services/posts/delete-post-service";
+
+import { PostNotFoundError } from "../../utils/errors/post-not-exists-error";
+import { Unauthorized } from "../../utils/errors/unauthorized-error";
 
 export class DeletePostController {
     async delete(req: Request, res: Response) {

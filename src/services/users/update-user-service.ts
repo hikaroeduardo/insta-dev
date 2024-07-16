@@ -1,6 +1,6 @@
-import { userModel } from "../models/UserModels";
+import { userModel } from "../../models/UserModels";
 
-import { UserNotFoundError } from "../utils/errors/user-not-found-error";
+import { UserNotFoundError } from "../../utils/errors/user-not-found-error";
 
 interface UpdateUserProps {
     name: string;
@@ -9,20 +9,6 @@ interface UpdateUserProps {
     bio: string;
     userId: string;
 }
-
-/*
-    [] name
-    [] gender
-    [] avatar
-
-    obs: O que não passar, vai continuar sendo o atual
-*/
-
-/*
-[x] Pegar usuário pelo ID
-    [x] Se não existir, retornar erro de não existe
-[x] Pegar name, gender e avatar
-*/
 
 export class UpdateUserService {
     async updateUser({ name, gender, avatar, bio, userId }: UpdateUserProps) {

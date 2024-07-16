@@ -1,5 +1,5 @@
-import { userModel } from "../models/UserModels";
-import { UserNotFoundError } from "../utils/errors/user-not-found-error";
+import { userModel } from "../../models/UserModels";
+import { UserNotFoundError } from "../../utils/errors/user-not-found-error";
 
 export class GetProfileService {
     async getUserProfile(userId: number) {

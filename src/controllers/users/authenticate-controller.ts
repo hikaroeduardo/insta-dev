@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { AuthenticateService } from "../services/authenticate-service";
 
-import { InvalidCredencials } from "../utils/errors/user-not-exists-error";
-import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
+import { AuthenticateService } from "../../services/users/authenticate-service";
+
+import { InvalidCredencials } from "../../utils/errors/user-not-exists-error";
+import { DataIsMandatoryError } from "../../utils/errors/data-is-mandatory-error";
 
 export class AuthenticateUser {
     async authenticate(req: Request, res: Response) {

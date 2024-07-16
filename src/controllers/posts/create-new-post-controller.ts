@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 
-import { CreateNewPostService } from "../services/create-new-post-service";
-import { DataIsMandatoryError } from "../utils/errors/data-is-mandatory-error";
+import { CreateNewPostService } from "../../services/posts/create-new-post-service";
+
+import { DataIsMandatoryError } from "../../utils/errors/data-is-mandatory-error";
 
 export class CreateNewPostController {
     async create(req: Request, res: Response) {
