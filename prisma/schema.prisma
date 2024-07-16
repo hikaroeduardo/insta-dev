@@ -24,6 +24,23 @@ model Users {
   password_hash String
   created_at    DateTime @default(now())
   updated_at    DateTime @default(now())
+  
+  posts         Post[]
 
   @@map("users")
 }
+
+model Post {
+  id           Int      @id @default(autoincrement())
+  image        String
+  description  String?
+  number_value Int      @default(0)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  author_id    Int
+  user         Users    @relation(fields: [author_id], references: [id])
+
+  @@map("posts")
+}
+
+// 1 usuário tem vários posts
