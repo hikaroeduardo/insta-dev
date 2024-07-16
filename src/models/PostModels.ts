@@ -22,6 +22,16 @@ class PostModel {
 
         return newPost;
     }
+
+    async findByPostId(id: number) {
+        const post = await prisma.post.findUnique({
+            where: {
+                id: id,
+            },
+        });
+
+        return post;
+    }
 }
 
 export const postModel = new PostModel();
