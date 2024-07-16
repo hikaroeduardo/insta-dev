@@ -11,6 +11,7 @@ import { GetProfileController } from "./controllers/get-profile-controller";
 import { UploadFileController } from "./controllers/upload-file-controller";
 
 import { upload } from "./utils/multer/multer-config";
+import { CreateNewPostController } from "./controllers/create-new-post-controller";
 
 routes.post("/user", new CreateNewUserController().create);
 routes.post("/login", new AuthenticateUser().authenticate);
@@ -22,3 +23,5 @@ routes.post(
     upload.single("image"),
     new UploadFileController().upload
 );
+
+routes.post("/post", isAuthenticate, new CreateNewPostController().create);
