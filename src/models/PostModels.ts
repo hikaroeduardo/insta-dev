@@ -32,6 +32,22 @@ class PostModel {
 
         return post;
     }
+
+    async findPostByAuthorId(userId: number) {
+        const posts = await prisma.post.findMany({
+            where: {
+                author_id: userId
+            },
+            select: {
+                id: true,
+                image: true,
+                description: true,
+                number_likes: true
+            }
+        });
+
+        return posts;
+    }
 }
 
 export const postModel = new PostModel();

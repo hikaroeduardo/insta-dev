@@ -16,6 +16,7 @@ import { CreateNewPostController } from "./controllers/posts/create-new-post-con
 import { DeletePostController } from "./controllers/posts/delete-post-controller";
 import { UpdatePostController } from "./controllers/posts/update-post-controller";
 import { AddLikePostController } from "./controllers/posts/add-like-post-controller";
+import { ListMyPostsController } from "./controllers/posts/list-my-posts-controller";
 
 routes.post("/user", new CreateNewUserController().create);
 routes.post("/login", new AuthenticateUser().authenticate);
@@ -32,3 +33,4 @@ routes.post("/post", isAuthenticate, new CreateNewPostController().create);
 routes.delete("/post/:id", isAuthenticate, new DeletePostController().delete);
 routes.patch("/post/:id", isAuthenticate, new UpdatePostController().update);
 routes.post("/add-like/:id", isAuthenticate, new AddLikePostController().add);
+routes.get("/posts/me", isAuthenticate, new ListMyPostsController().list);
