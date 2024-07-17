@@ -5,14 +5,6 @@ import { postModel } from "../../models/PostModels";
 import { PostNotFoundError } from "../../utils/errors/post-not-exists-error";
 import { Unauthorized } from "../../utils/errors/unauthorized-error";
 
-/*
-    [x] ID do post por rota
-    [x] Pegar image e description
-        [] Se não enviar, deixar o atual
-    [x] Pegar id do token
-        [x] Se for usuário diferente, retornar erro
-*/
-
 interface UpdatePostProps {
     id: string;
     userId: string;

@@ -15,6 +15,7 @@ import { UploadFileController } from "./controllers/users/upload-file-controller
 import { CreateNewPostController } from "./controllers/posts/create-new-post-controller";
 import { DeletePostController } from "./controllers/posts/delete-post-controller";
 import { UpdatePostController } from "./controllers/posts/update-post-controller";
+import { AddLikePostController } from "./controllers/posts/add-like-post-controller";
 
 routes.post("/user", new CreateNewUserController().create);
 routes.post("/login", new AuthenticateUser().authenticate);
@@ -30,3 +31,4 @@ routes.post(
 routes.post("/post", isAuthenticate, new CreateNewPostController().create);
 routes.delete("/post/:id", isAuthenticate, new DeletePostController().delete);
 routes.patch("/post/:id", isAuthenticate, new UpdatePostController().update);
+routes.post("/add-like/:id", isAuthenticate, new AddLikePostController().add);
