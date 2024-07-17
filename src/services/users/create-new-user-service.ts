@@ -12,34 +12,32 @@ interface CreateNewUserProps {
     password: string;
 }
 
-export class CreateNewUserService {
-    async createNewUser({
+export async function createNewUserService({
+    name,
+    email,
+    userName,
+    password,
+}: CreateNewUserProps) {
+    if (!name || !email || !userName || !password) {
+        throw new DataIsMandatoryError("Todos os dados são obrigatórios.");
+    }
+
+    const userAlreadyExists = await userModel.findByEmail(email);
+
+    if (userAlreadyExists) {
+        throw new UserAlreadyExistsError(
+            "Este e-mail ja está cadastrado em nosso sistema."
+        );
+    }
+
+    const password_hash = await hash(password, 6);
+
+    const newUser = await userModel.createUser({
         name,
         email,
         userName,
-        password,
-    }: CreateNewUserProps) {
-        if (!name || !email || !userName || !password) {
-            throw new DataIsMandatoryError("Todos os dados são obrigatórios.");
-        }
+        password_hash,
+    });
 
-        const userAlreadyExists = await userModel.findByEmail(email);
-
-        if (userAlreadyExists) {
-            throw new UserAlreadyExistsError(
-                "Este e-mail ja está cadastrado em nosso sistema."
-            );
-        }
-
-        const password_hash = await hash(password, 6);
-
-        const newUser = await userModel.createUser({
-            name,
-            email,
-            userName,
-            password_hash,
-        });
-
-        return newUser;
-    }
+    return newUser;
 }

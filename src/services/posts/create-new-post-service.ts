@@ -8,18 +8,20 @@ interface CreateNewPostProps {
     description: string;
 }
 
-export class CreateNewPostService {
-    async createNewPost({ userId, image, description }: CreateNewPostProps) {
-        if (!image) {
-            throw new DataIsMandatoryError("Imagem é obrigatória.");
-        }
-
-        const newPost = await postModel.createPost({
-            author_id: Number(userId),
-            description,
-            image,
-        });
-
-        return newPost;
+export async function createNewPostService({
+    userId,
+    image,
+    description,
+}: CreateNewPostProps) {
+    if (!image) {
+        throw new DataIsMandatoryError("Imagem é obrigatória.");
     }
+
+    const newPost = await postModel.createPost({
+        author_id: Number(userId),
+        description,
+        image,
+    });
+
+    return newPost;
 }
